@@ -1,28 +1,48 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { Inter } from "next/font/google";
+import { site } from "@/lib/site";
+import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "briquebot",
-  description: "briquebot — Next.js full-stack scaffold",
+  metadataBase: new URL(site.url),
+  title: {
+    default: `${site.name}.io — ${site.tagline}`,
+    template: `%s · ${site.name}.io`,
+  },
+  description: site.description,
+  keywords: [
+    "grupo de brique",
+    "classificados WhatsApp",
+    "monetizar grupo WhatsApp",
+    "anúncio PIX",
+    "vender no grupo",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: site.url,
+    siteName: `${site.name}.io`,
+    title: `${site.name}.io — ${site.tagline}`,
+    description: site.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name}.io — ${site.tagline}`,
+    description: site.description,
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body
-        style={{
-          fontFamily: "system-ui, sans-serif",
-          margin: 0,
-          minHeight: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "#0b1020",
-          color: "#e6e9f0",
-        }}
-      >
-        {children}
-      </body>
+    <html lang="pt-BR" className={inter.variable}>
+      <body className="font-sans">{children}</body>
     </html>
   );
 }

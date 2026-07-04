@@ -1,32 +1,31 @@
-"use client";
+import { SiteHeader } from "@/components/marketing/SiteHeader";
+import { Hero } from "@/components/marketing/Hero";
+import { SocialProof } from "@/components/marketing/SocialProof";
+import { HowItWorks } from "@/components/marketing/HowItWorks";
+import { Benefits } from "@/components/marketing/Benefits";
+import { Trust } from "@/components/marketing/Trust";
+import { ForSellers } from "@/components/marketing/ForSellers";
+import { Pricing } from "@/components/marketing/Pricing";
+import { Faq } from "@/components/marketing/Faq";
+import { FinalCta } from "@/components/marketing/FinalCta";
+import { SiteFooter } from "@/components/marketing/SiteFooter";
 
-import { useEffect, useState } from "react";
-
-export default function Home() {
-  const [message, setMessage] = useState<string>("Loading...");
-
-  useEffect(() => {
-    fetch("/api/hello")
-      .then((res) => res.json())
-      .then((data) => setMessage(data.message))
-      .catch(() => setMessage("Failed to reach the API"));
-  }, []);
-
+export default function HomePage() {
   return (
-    <main style={{ textAlign: "center", padding: "2rem" }}>
-      <h1 style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>briquebot</h1>
-      <p style={{ opacity: 0.7, marginBottom: "1.5rem" }}>
-        Message fetched from <code>/api/hello</code>:
-      </p>
-      <p
-        style={{
-          fontSize: "1.5rem",
-          fontWeight: 600,
-          color: "#7cc4ff",
-        }}
-      >
-        {message}
-      </p>
-    </main>
+    <>
+      <SiteHeader />
+      <main>
+        <Hero />
+        <SocialProof />
+        <HowItWorks />
+        <Benefits />
+        <Trust />
+        <ForSellers />
+        <Pricing />
+        <Faq />
+        <FinalCta />
+      </main>
+      <SiteFooter />
+    </>
   );
 }
