@@ -4,18 +4,14 @@ import { ButtonLink } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Entrar",
-  description: "Acesse o Briquebot.io para criar seu grupo ou anunciar.",
+  description: "Acesse o Briquebot.io para criar o grupo de classificados da sua comunidade.",
   robots: { index: false },
 };
 
 // Placeholder entry point. Social login (Auth.js — Google, depois Facebook)
-// entra numa fase posterior; por ora capturamos o interesse (early access).
-export default function EntrarPage({
-  searchParams,
-}: {
-  searchParams: { intent?: string };
-}) {
-  const isSeller = searchParams.intent === "anunciar";
+// entra numa fase posterior; por ora capturamos o interesse (early access) do
+// dono de grupo, único público do produto.
+export default function EntrarPage() {
   return (
     <main className="grid min-h-screen place-items-center bg-brand-50 px-5 py-16">
       <div className="w-full max-w-md rounded-3xl border border-slate-100 bg-white p-8 text-center shadow-sm">
@@ -23,7 +19,7 @@ export default function EntrarPage({
           B
         </div>
         <h1 className="mt-5 text-2xl font-extrabold tracking-tight text-slate-900">
-          {isSeller ? "Quase lá para anunciar" : "Quase lá para criar seu grupo"}
+          Quase lá para criar seu grupo
         </h1>
         <p className="mt-3 leading-relaxed text-slate-600">
           O login com Google está chegando. Estamos abrindo o Briquebot para os primeiros
