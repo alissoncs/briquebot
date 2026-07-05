@@ -10,9 +10,8 @@ export const site = {
     "Transforme seu grupo de brique numa fonte de renda. Cobre por anúncio via PIX, aprove com um toque e sem risco de ban. Crie seu grupo grátis.",
 } as const;
 
-// Conversion destinations. Single destination for the whole page: social login.
+// Conversion destination. Single audience (group owners), single destination: social login.
 export const cta = {
   primary: "/entrar",
-  seller: "/entrar?intent=anunciar",
   login: "/entrar",
 } as const;

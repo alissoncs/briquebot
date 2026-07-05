@@ -4,7 +4,6 @@ import { SocialProof } from "@/components/marketing/SocialProof";
 import { HowItWorks } from "@/components/marketing/HowItWorks";
 import { Benefits } from "@/components/marketing/Benefits";
 import { Trust } from "@/components/marketing/Trust";
-import { ForSellers } from "@/components/marketing/ForSellers";
 import { Pricing } from "@/components/marketing/Pricing";
 import { Faq } from "@/components/marketing/Faq";
 import { FinalCta } from "@/components/marketing/FinalCta";
@@ -20,7 +19,6 @@ export default function HomePage() {
         <HowItWorks />
         <Benefits />
         <Trust />
-        <ForSellers />
         <Pricing />
         <Faq />
         <FinalCta />
