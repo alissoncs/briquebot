@@ -15,7 +15,7 @@ export default function OgImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px",
-          background: "linear-gradient(135deg, #f5f3ff 0%, #ffffff 60%)",
+          background: "#0b1912",
           fontFamily: "sans-serif",
         }}
       >
@@ -25,8 +25,8 @@ export default function OgImage() {
               width: 64,
               height: 64,
               borderRadius: 16,
-              background: "#7C3AED",
-              color: "white",
+              background: "#00d068",
+              color: "#061209",
               fontSize: 40,
               fontWeight: 800,
               display: "flex",
@@ -36,26 +36,26 @@ export default function OgImage() {
           >
             B
           </div>
-          <div style={{ display: "flex", fontSize: 34, fontWeight: 800, color: "#0f172a" }}>
+          <div style={{ display: "flex", fontSize: 34, fontWeight: 800, color: "#edfaf2" }}>
             <span>Briquebot</span>
-            <span style={{ color: "#7C3AED" }}>.io</span>
+            <span style={{ color: "#00d068" }}>.io</span>
           </div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           <div style={{ display: "flex", flexDirection: "column", fontSize: 66, fontWeight: 800, lineHeight: 1.05, maxWidth: 1000 }}>
-            <span style={{ color: "#0f172a" }}>Seu grupo de WhatsApp vale dinheiro.</span>
-            <span style={{ color: "#7C3AED" }}>Comece a receber por isso.</span>
+            <span style={{ color: "#edfaf2" }}>Seu grupo de WhatsApp vale dinheiro.</span>
+            <span style={{ color: "#00d068" }}>Comece a receber por isso.</span>
           </div>
-          <div style={{ display: "flex", fontSize: 30, color: "#475569", maxWidth: 940 }}>
+          <div style={{ display: "flex", fontSize: 30, color: "#6b9e7b", maxWidth: 940 }}>
             Cobre por anúncio via PIX · aprove com um toque · sem risco de ban.
           </div>
         </div>
 
         <div style={{ display: "flex", gap: 12 }}>
-          <Pill bg="#25D366" label="WhatsApp" />
-          <Pill bg="#32BCAD" label="PIX" />
-          <Pill bg="#F59E0B" label="Sem mensalidade" />
+          <Pill bg="#25D366" fg="#061209" label="WhatsApp" />
+          <Pill bg="#00d068" fg="#061209" label="PIX" />
+          <Pill bg="#ffd100" fg="#0b1912" label="Sem mensalidade" />
         </div>
       </div>
     ),
@@ -63,13 +63,13 @@ export default function OgImage() {
   );
 }
 
-function Pill({ bg, label }: { bg: string; label: string }) {
+function Pill({ bg, fg, label }: { bg: string; fg: string; label: string }) {
   return (
     <div
       style={{
         display: "flex",
         background: bg,
-        color: "white",
+        color: fg,
         fontSize: 26,
         fontWeight: 700,
         padding: "8px 22px",
