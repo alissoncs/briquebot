@@ -53,7 +53,7 @@ function RevenueCalculator() {
   const monthlyRevenue = listings * 4 * fee * (share / 100);
 
   return (
-    <section className="py-24 px-6">
+    <section className="py-16 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-14">
           <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-4" style={{ fontFamily: "Figtree, sans-serif" }}>
@@ -121,7 +121,7 @@ function RevenueCalculator() {
 
 function WhatsAppMockup() {
   return (
-    <section className="py-24 px-6 bg-muted/30">
+    <section className="py-16 px-6 bg-muted/30">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-14">
           <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-4" style={{ fontFamily: "Figtree, sans-serif" }}>
@@ -285,7 +285,7 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero */}
-      <section className="pt-32 pb-20 px-6 relative overflow-hidden">
+      <section className="pt-32 pb-16 px-6 relative overflow-hidden">
         {/* Background glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full opacity-10 blur-3xl pointer-events-none"
           style={{ background: "radial-gradient(ellipse, #00d068 0%, transparent 70%)" }} />
@@ -380,7 +380,7 @@ export default function LandingPage() {
       </section>
 
       {/* How it works */}
-      <section className="py-24 px-6">
+      <section className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-4">Como funciona</span>
@@ -421,7 +421,7 @@ export default function LandingPage() {
       <RevenueCalculator />
 
       {/* Features */}
-      <section className="py-24 px-6 border-t border-border">
+      <section className="py-16 px-6 border-t border-border">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div>
@@ -454,7 +454,7 @@ export default function LandingPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 px-6 bg-muted/20">
+      <section className="py-16 px-6 bg-muted/20">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-4">Donos de grupo falam</span>
@@ -501,7 +501,7 @@ export default function LandingPage() {
       </section>
 
       {/* Pricing */}
-      <section className="py-24 px-6">
+      <section className="py-16 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-14">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-4">Planos</span>
@@ -566,7 +566,7 @@ export default function LandingPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 px-6">
+      <section className="py-16 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <div className="bg-card border border-border rounded-3xl p-12 relative overflow-hidden">
             <div className="absolute inset-0 opacity-5 pointer-events-none"
