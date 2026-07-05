@@ -1,26 +1,47 @@
-# briquebot
+# Briquebot.io
 
-A basic full-stack scaffold built with **Next.js** (App Router) and prepared for a
-**Neon (Vercel) PostgreSQL** database.
+Turn a WhatsApp group/community into an official, monetized classifieds channel for its owner.
 
-## What's inside
+## What it does
 
-- **Backend API** — `GET /api/hello` returns a Hello World JSON payload.
-- **Frontend** — the home page (`app/page.tsx`) fetches `/api/hello` and displays the message.
-- **Database (scaffolded)** — `lib/db.ts` and `.env.example` are ready for a Neon
-  `DATABASE_URL`. No live query is wired up yet — Hello World only needs the API.
+Briquebot.io is a classifieds/marketplace SaaS built for **group owners (donos de grupo)** in Brazil. It lets a community owner create an official trading channel where their members buy, sell, and trade in a trusted, curated space the owner controls.
+
+Members pay a small per-listing contribution fee via PIX to post; the owner earns a share of the fees, turning their community into recurring revenue.
+
+The product is single-audience: it targets group owners only — there is no separate advertiser/seller product.
+
+## How it works
+
+1. **Owner sets up their channel** — creates and configures their classifieds channel, including the per-listing contribution fee.
+2. **Member creates a listing** — adds photos and details, then pays the fee via PIX.
+3. **Listing goes live** — the paid listing is posted to the owner's WhatsApp channel (semi-automated share intent), with a public product page and a direct-contact button.
+
+## Tech stack
+
+- **Next.js 14** (App Router) + **React 18** + **TypeScript**
+- **Tailwind CSS**
+- **PostgreSQL (Neon)** + **Drizzle ORM**
+- **Auth.js** (Google / Facebook OAuth)
+- **Pagar.me** (PIX payments)
+- **Vercel Blob** (image storage)
+- Semi-automated WhatsApp posting via share intent
+
+## Status
+
+- Landing page (institutional pt-BR home) is built and live.
+- Core MVP — auth, group/channel setup, listing creation, PIX checkout, WhatsApp posting — is in progress.
+
+Deferred for later phases: tiered plans, custom subdomains, Discord bot, and automatic owner payouts.
 
 ## Getting started
 
 ```bash
 npm install
-cp .env.example .env.local   # then fill in your Neon DATABASE_URL (optional for now)
 npm run dev
 ```
 
-Open http://localhost:3000 — you should see the message served by `/api/hello`.
+Open http://localhost:3000.
 
-## Deploying
+Other scripts: `npm run build`, `npm run start`, `npm run lint`.
 
-Designed for one-click deployment to **Vercel**. Add `DATABASE_URL` (from Neon /
-Vercel Storage) as an environment variable when you're ready to use the database.
+Once auth, database, and payment features land, you'll need environment variables for the Neon database, Auth.js OAuth providers, Pagar.me, and Vercel Blob (see `.env.example` when available).
