@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CheckCircle, ChevronRight, Star, Zap, ShieldCheck, TrendingUp, Users, Tag, MessageCircle, ArrowRight, Play, X } from "lucide-react";
 
 const BriquebotLogo = ({ size = 36 }: { size?: number }) => (
@@ -44,6 +44,237 @@ const features = [
   { icon: <MessageCircle size={20} />, title: "Link para WhatsApp", desc: "Botão de contato direto com o vendedor. Negociação no 1:1, sem intermediários." },
   { icon: <Star size={20} />, title: "Reputação do grupo", desc: "Anúncios verificados fortalecem a confiança da sua comunidade." },
 ];
+
+function EarningsBadge({ amount, delay }: { amount: string; delay: number }) {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setVisible(true), delay);
+    return () => clearTimeout(t);
+  }, [delay]);
+  return (
+    <div className={`flex items-center gap-1.5 bg-[#00d068] text-[#061209] font-bold text-xs px-2.5 py-1.5 rounded-full shadow-lg shadow-[#00d068]/30 transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>
+      +{amount}
+    </div>
+  );
+}
+
+function HeroPhone() {
+  const listings = [
+    {
+      emoji: "🖥️",
+      title: "RTX 4090 24GB — Novo",
+      price: "R$ 8.900",
+      tag: "Eletrônicos",
+      earn: "R$ 7,00",
+      earnDelay: 600,
+      time: "14:32",
+    },
+    {
+      emoji: "👟",
+      title: "Nike Air Max 270 — 42",
+      price: "R$ 320",
+      tag: "Moda",
+      earn: "R$ 5,60",
+      earnDelay: 1400,
+      time: "14:45",
+    },
+    {
+      emoji: "📱",
+      title: "iPhone 14 Pro 256GB",
+      price: "R$ 4.200",
+      tag: "Celulares",
+      earn: "R$ 7,00",
+      earnDelay: 2200,
+      time: "15:01",
+    },
+  ];
+
+  return (
+    <div className="relative flex justify-center md:justify-end items-center">
+      {/* Glow behind phone */}
+      <div className="absolute w-64 h-96 rounded-full opacity-20 blur-3xl pointer-events-none"
+        style={{ background: "radial-gradient(ellipse, #00d068 0%, transparent 70%)" }} />
+
+      {/* Earning per listing legend — left side, 3D lifted */}
+      <div className="absolute -left-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-4 z-30">
+        {/* Card 1 — earnings per listing */}
+        <div className="rounded-2xl px-5 py-4 w-52"
+          style={{
+            background: "linear-gradient(145deg, #1e3528 0%, #132018 100%)",
+            border: "1px solid rgba(0,208,104,0.25)",
+            boxShadow: "0 2px 0 rgba(0,208,104,0.08), 0 8px 24px rgba(0,0,0,0.5), 0 24px 48px rgba(0,0,0,0.4), 6px 6px 0 rgba(0,0,0,0.3)",
+            transform: "perspective(600px) rotateY(6deg) rotateX(-2deg)",
+          }}>
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+              style={{ background: "linear-gradient(135deg, rgba(255,209,0,0.25) 0%, rgba(255,209,0,0.08) 100%)", border: "1px solid rgba(255,209,0,0.3)", boxShadow: "0 4px 12px rgba(255,209,0,0.15)" }}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#ffd100">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z" />
+              </svg>
+            </div>
+            <div>
+              <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">Por anúncio</div>
+              <div className="text-2xl font-extrabold text-primary leading-tight" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>R$ 5–15</div>
+            </div>
+          </div>
+          <div className="text-xs text-muted-foreground border-t border-border pt-2.5">
+            💳 cai direto na sua conta via PIX
+          </div>
+        </div>
+
+        {/* Card 2 — monthly total */}
+        <div className="rounded-2xl px-5 py-4 w-52"
+          style={{
+            background: "linear-gradient(145deg, #1a2e22 0%, #0f1e15 100%)",
+            border: "1px solid rgba(0,208,104,0.18)",
+            boxShadow: "0 2px 0 rgba(0,208,104,0.06), 0 8px 24px rgba(0,0,0,0.5), 0 24px 48px rgba(0,0,0,0.4), 6px 6px 0 rgba(0,0,0,0.3)",
+            transform: "perspective(600px) rotateY(6deg) rotateX(-2deg)",
+          }}>
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+              style={{ background: "linear-gradient(135deg, rgba(0,208,104,0.2) 0%, rgba(0,208,104,0.06) 100%)", border: "1px solid rgba(0,208,104,0.25)", boxShadow: "0 4px 12px rgba(0,208,104,0.12)" }}>
+              <TrendingUp size={22} className="text-primary" />
+            </div>
+            <div>
+              <div className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest">Este mês</div>
+              <div className="text-2xl font-extrabold text-foreground leading-tight" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>R$ 1.240</div>
+            </div>
+          </div>
+          <div className="text-xs text-muted-foreground border-t border-border pt-2.5">
+            📊 Grupo Eletrônicos SP · 248 anúncios
+          </div>
+        </div>
+      </div>
+
+      {/* iPhone frame */}
+      <div className="relative w-[270px] rounded-[44px] shadow-2xl shadow-black/70 overflow-hidden flex-shrink-0"
+        style={{
+          background: "#1c1c1e",
+          border: "6px solid #2c2c2e",
+          boxShadow: "0 0 0 1px #3a3a3c, 0 30px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.08)",
+        }}>
+
+        {/* Dynamic Island */}
+        <div className="flex justify-center pt-3 pb-1 bg-[#111b21]">
+          <div className="w-24 h-7 bg-black rounded-full flex items-center justify-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-[#1c1c1e] border border-[#333]" />
+            <div className="w-3 h-3 rounded-full bg-[#1c1c1e] border border-[#333]" />
+          </div>
+        </div>
+
+        {/* Status bar */}
+        <div className="flex items-center justify-between px-5 py-1 bg-[#111b21]">
+          <span className="text-[10px] text-white font-semibold">9:41</span>
+          <div className="flex items-center gap-1">
+            <svg width="12" height="9" viewBox="0 0 12 9" fill="white"><rect x="0" y="4" width="2" height="5" rx="0.5" /><rect x="3" y="2.5" width="2" height="6.5" rx="0.5" /><rect x="6" y="1" width="2" height="8" rx="0.5" /><rect x="9" y="0" width="2" height="9" rx="0.5" opacity="0.3" /></svg>
+            <svg width="10" height="8" viewBox="0 0 10 8" fill="white"><path d="M5 1.5C6.8 1.5 8.4 2.3 9.5 3.5L10 3 9 2C7.7.7 6 0 5 0S2.3.7 1 2L0 3l.5.5C1.6 2.3 3.2 1.5 5 1.5z" /><path d="M5 3.5c1.1 0 2.1.5 2.8 1.2L8.5 4l-1-.9C6.6 2.4 5.8 2 5 2s-1.6.4-2.5 1.1L1.5 4l.7.7C3 3.9 3.9 3.5 5 3.5z" /><circle cx="5" cy="6.5" r="1.5" /></svg>
+            <div className="flex items-center gap-0.5">
+              <div className="w-5 h-2.5 rounded-sm border border-white/60 flex items-center px-0.5">
+                <div className="w-3 h-1.5 bg-white rounded-sm" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* WhatsApp header */}
+        <div className="flex items-center gap-2.5 px-3 py-2" style={{ background: "#1f2c34" }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#8696a0"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" /></svg>
+          <div className="w-7 h-7 rounded-full bg-[#00d068] flex items-center justify-center text-[#061209] font-bold text-[9px]">GV</div>
+          <div className="flex-1 min-w-0">
+            <div className="text-white text-[11px] font-semibold leading-tight">Venda & Troca SP 🔥</div>
+            <div className="text-[#8696a0] text-[8px]">Canal · 4.832 inscritos</div>
+          </div>
+        </div>
+
+        {/* Chat area */}
+        <div className="px-2 py-2 space-y-3 h-[420px] overflow-hidden"
+          style={{ background: "#0b141a", backgroundImage: "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.02) 1px, transparent 0)", backgroundSize: "16px 16px" }}>
+
+          <div className="flex justify-center">
+            <span className="text-[8px] text-[#8696a0] bg-[#1f2c34]/80 px-2 py-0.5 rounded-full">HOJE</span>
+          </div>
+
+          {listings.map((item, i) => (
+            <div key={i} className="relative">
+              <div className="bg-[#202c33] rounded-xl rounded-tl-sm overflow-hidden shadow-md">
+                <div className="flex items-center gap-2 px-2.5 py-2">
+                  <div className="w-8 h-8 rounded-lg bg-[#2a3942] flex items-center justify-center text-base">{item.emoji}</div>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-white text-[10px] font-semibold leading-tight truncate">{item.title}</div>
+                    <div className="text-[#25d366] text-[11px] font-bold">{item.price}</div>
+                  </div>
+                  <span className="text-[7px] bg-[#2a3942] text-[#8696a0] px-1.5 py-0.5 rounded-full flex-shrink-0">{item.tag}</span>
+                </div>
+
+                <div className="px-2.5 pb-1.5 flex items-center justify-between">
+                  <div className="flex items-center gap-1">
+                    <BriquebotLogo size={9} />
+                    <span className="text-[7px] text-[#8696a0]">via Briquebot</span>
+                  </div>
+                  <span className="text-[7px] text-[#8696a0]">{item.time} ✓✓</span>
+                </div>
+              </div>
+
+              {/* Earning badge floating off right edge */}
+              <div className="absolute -right-2 -top-2 z-10">
+                <EarningsBadge amount={item.earn} delay={item.earnDelay} />
+              </div>
+            </div>
+          ))}
+
+          {/* Typing indicator */}
+          <div className="flex items-center gap-1.5 pl-1 pt-1">
+            <div className="w-5 h-5 rounded-full bg-[#2a3942] flex items-center justify-center">
+              <span className="text-[7px]">+</span>
+            </div>
+            <div className="bg-[#202c33] rounded-full px-3 py-1.5 flex gap-1">
+              {[0, 150, 300].map(d => (
+                <div key={d} className="w-1.5 h-1.5 rounded-full bg-[#8696a0] animate-bounce" style={{ animationDelay: `${d}ms` }} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="flex items-center gap-2 px-3 py-2 bg-[#1f2c34]">
+          <div className="flex-1 bg-[#2a3942] rounded-full h-7 flex items-center px-3">
+            <span className="text-[9px] text-[#8696a0]">Mensagem</span>
+          </div>
+          <div className="w-7 h-7 rounded-full bg-[#00d068] flex items-center justify-center">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#061209"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" /></svg>
+          </div>
+        </div>
+
+        {/* Home indicator */}
+        <div className="flex justify-center py-2 bg-[#0b141a]">
+          <div className="w-24 h-1 rounded-full bg-white/30" />
+        </div>
+      </div>
+
+      {/* PIX received toast — bottom right of phone, 3D lifted */}
+      <div className="absolute -bottom-5 -right-6 z-30 flex items-center gap-3 px-4 py-3 rounded-2xl w-52"
+        style={{
+          background: "linear-gradient(145deg, #1e3528 0%, #112019 100%)",
+          border: "1px solid rgba(0,208,104,0.35)",
+          boxShadow: "0 2px 0 rgba(0,208,104,0.1), 0 8px 24px rgba(0,0,0,0.55), 0 20px 40px rgba(0,0,0,0.35), -5px 5px 0 rgba(0,0,0,0.25)",
+          transform: "perspective(600px) rotateY(-5deg) rotateX(-3deg)",
+        }}>
+        <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+          style={{ background: "rgba(0,208,104,0.18)", border: "1px solid rgba(0,208,104,0.3)", boxShadow: "0 4px 12px rgba(0,208,104,0.15)" }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#00d068">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z" />
+          </svg>
+        </div>
+        <div>
+          <div className="text-sm font-bold text-primary">PIX recebido!</div>
+          <div className="text-xs text-muted-foreground">+R$ 7,00 · agora mesmo</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 
 function RevenueCalculator() {
   const [listings, setListings] = useState(20);
@@ -336,34 +567,8 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Stats panel */}
-          <div className="relative">
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { label: "Anúncios publicados", value: "487.320", change: "+12% essa semana" },
-                { label: "Receita total gerada", value: "R$ 2,1M", change: "para donos de grupo" },
-                { label: "Grupos ativos", value: "2.143", change: "em todo o Brasil" },
-                { label: "Tempo médio por anúncio", value: "< 3 min", change: "do PIX ao ar" },
-              ].map((s, i) => (
-                <div key={i} className="bg-card border border-border rounded-2xl p-5 hover:border-primary/30 transition-colors">
-                  <div className="text-2xl font-extrabold text-foreground mb-1" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>{s.value}</div>
-                  <div className="text-xs font-semibold text-foreground mb-1">{s.label}</div>
-                  <div className="text-[11px] text-muted-foreground">{s.change}</div>
-                </div>
-              ))}
-            </div>
-
-            {/* Floating notification */}
-            <div className="absolute -bottom-4 -left-4 bg-card border border-border rounded-xl px-4 py-3 flex items-center gap-3 shadow-xl">
-              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                <Zap size={16} className="text-primary" />
-              </div>
-              <div>
-                <div className="text-xs font-semibold">Novo anúncio publicado!</div>
-                <div className="text-[10px] text-muted-foreground">Grupo Eletrônicos BH · R$ 12 via PIX</div>
-              </div>
-            </div>
-          </div>
+          {/* iPhone Hero Mockup */}
+          <HeroPhone />
         </div>
       </section>
 
